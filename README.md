@@ -34,8 +34,8 @@ A modern, real-time monitoring dashboard for HAProxy-based VPN failover systems 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/soheilas/HAProxy-VPN-Monitor.git
-cd HAProxy-VPN-Monitor
+git clone https://github.com/soheilas/HA-Monitor.git
+cd HA-Monitor
 ```
 
 ### 2. Install dependencies
@@ -67,9 +67,9 @@ backend at
     timeout server 300s
     timeout check 500ms
     
-    server WireGuard 10.100.3.2:1010 check inter 200ms fall 1 rise 2
-    server OpenVPN 10.100.2.2:1010 check backup inter 200ms fall 1 rise 2
-    server V2ray 10.100.1.2:1010 check backup inter 200ms fall 1 rise 2
+    server wireguard 10.100.3.2:1010 check inter 200ms fall 1 rise 2
+    server openvpn 10.100.2.2:1010 check backup inter 200ms fall 1 rise 2
+    server v2ray 10.100.1.2:1010 check backup inter 200ms fall 1 rise 2
 ```
 
 ### 4. Configure the monitoring script
@@ -89,8 +89,8 @@ After=network.target haproxy.service
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/opt
-ExecStart=/usr/bin/python3 /root/HAProxy-VPN-Monitor/ha-api.py
+WorkingDirectory=/root
+ExecStart=/usr/bin/python3 /root/HA-Monitor/ha-api.py
 Restart=always
 
 [Install]
@@ -107,9 +107,9 @@ systemctl start ha-monitor
 Modify the server list in `ha-api.py`:
 ```python
 servers = [
-    { name: 'WireGuard', type: 'Primary', id: 'WireGuard' },
-    { name: 'OpenVPN', type: 'Backup', id: 'OpenVPN' },
-    { name: 'V2ray', type: 'Backup', id: 'V2ray' }
+    { name: 'WireGuard', type: 'Primary', id: 'wireguard' },
+    { name: 'OpenVPN', type: 'Backup', id: 'openvpn' },
+    { name: 'V2ray', type: 'Backup', id: 'v2ray' }
 ]
 ```
 
