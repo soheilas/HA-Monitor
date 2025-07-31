@@ -7,7 +7,6 @@ A modern, real-time monitoring dashboard for HAProxy-based VPN failover systems 
 - **Real-time Monitoring**: Live status updates every 5 seconds
 - **Automatic Failover**: Seamless switching between VPN servers
 - **Modern UI**: Beautiful, responsive dashboard with dark theme
-- **Multi-Server Support**: Monitor WireGuard, IPSec, and IPIP tunnels
 - **Traffic Statistics**: View bandwidth usage and connection counts
 - **Secure Access**: Built-in authentication system
 - **Lightweight**: Minimal resource usage
