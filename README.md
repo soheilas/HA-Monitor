@@ -1,4 +1,4 @@
-# HAProxy VPN Monitor Dashboard
+# HAProxy Monitor Dashboard
 
 A modern, real-time monitoring dashboard for HAProxy-based VPN failover systems with automatic server switching capabilities.
 
