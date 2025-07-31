@@ -45,7 +45,7 @@ def get_haproxy_stats():
         reader = csv.DictReader(io.StringIO(result.stdout))
         
         for row in reader:
-            if row['svname'] in ['wireguard', 'ipsec', 'ipip']:
+            if row['svname'] in ['wireguard', 'openvpn', 'v2ray']:
                 stats[row['svname']] = {
                     'status': row['status'],
                     'current_sessions': int(row['scur'] or 0),
