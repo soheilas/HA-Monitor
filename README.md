@@ -90,7 +90,7 @@ After=network.target haproxy.service
 Type=simple
 User=root
 WorkingDirectory=/opt
-ExecStart=/usr/bin/python3 /opt/vpn-api.py
+ExecStart=/usr/bin/python3 /root/HAProxy-VPN-Monitor/ha-api.py
 Restart=always
 
 [Install]
@@ -104,7 +104,7 @@ systemctl start ha-monitor
 ## 🔧 Configuration
 
 ### Server Configuration
-Modify the server list in `vpn-api.py`:
+Modify the server list in `ha-api.py`:
 ```python
 servers = [
     { name: 'WireGuard', type: 'Primary', id: 'WireGuard' },
