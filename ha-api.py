@@ -185,7 +185,7 @@ def login():
 <body>
     <div class="login-container">
         <div class="logo">🔐</div>
-        <h2>ورود به پنل VPN</h2>
+        <h2>ورود به پنل </h2>
         ''' + (f'<div class="error">{error}</div>' if error else '') + '''
         <form method="POST">
             <div class="form-group">
@@ -249,7 +249,7 @@ def dashboard():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VPN Status Monitor</title>
+    <title>HA Status Monitor</title>
     <style>
         * {
             margin: 0;
@@ -491,9 +491,9 @@ def dashboard():
         const HAPROXY_STATS_URL = '/api/stats';
         
         const servers = [
-            { name: 'WireGuard', type: 'Primary', id: 'WireGuard' },
-            { name: 'OpenVPN', type: 'Backup', id: 'OpenVPN' },
-            { name: 'V2RAY', type: 'Backup', id: 'V2RAY' }
+            { name: 'WireGuard', type: 'Primary', id: 'wireguard' },
+            { name: 'OpenVPN', type: 'Backup', id: 'openvpn' },
+            { name: 'V2RAY', type: 'Backup', id: 'v2ray' }
         ];
 
         async function fetchStats() {
