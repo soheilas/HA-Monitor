@@ -67,23 +67,23 @@ backend at
     timeout server 300s
     timeout check 500ms
     
-    server wireguard 10.100.3.2:1010 check inter 200ms fall 1 rise 2
-    server ipsec 10.100.2.2:1010 check backup inter 200ms fall 1 rise 2
-    server ipip 10.100.1.2:1010 check backup inter 200ms fall 1 rise 2
+    server WireGuard 10.100.3.2:1010 check inter 200ms fall 1 rise 2
+    server OpenVPN 10.100.2.2:1010 check backup inter 200ms fall 1 rise 2
+    server V2ray 10.100.1.2:1010 check backup inter 200ms fall 1 rise 2
 ```
 
 ### 4. Configure the monitoring script
-Edit `vpn-api.py` and set your credentials:
+Edit `ha-api.py` and set your credentials:
 ```python
-ADMIN_USERNAME = 'your_username'
-ADMIN_PASSWORD = 'your_secure_password'
+ADMIN_USERNAME = 'soheil'
+ADMIN_PASSWORD = 'star'
 ```
 
 ### 5. Create systemd service
 ```bash
-cat > /etc/systemd/system/vpn-monitor.service << EOF
+cat > /etc/systemd/system/ha-monitor.service << EOF
 [Unit]
-Description=VPN Monitor Dashboard
+Description=HaPorxy Monitor Dashboard
 After=network.target haproxy.service
 
 [Service]
@@ -97,8 +97,8 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-systemctl enable vpn-monitor
-systemctl start vpn-monitor
+systemctl enable ha-monitor
+systemctl start ha-monitor
 ```
 
 ## 🔧 Configuration
@@ -107,9 +107,9 @@ systemctl start vpn-monitor
 Modify the server list in `vpn-api.py`:
 ```python
 servers = [
-    { name: 'WireGuard', type: 'Primary', id: 'wireguard' },
-    { name: 'IPSec', type: 'Backup', id: 'ipsec' },
-    { name: 'IPIP', type: 'Backup', id: 'ipip' }
+    { name: 'WireGuard', type: 'Primary', id: 'WireGuard' },
+    { name: 'OpenVPN', type: 'Backup', id: 'OpenVPN' },
+    { name: 'V2ray', type: 'Backup', id: 'V2ray' }
 ]
 ```
 
